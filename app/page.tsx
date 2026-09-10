@@ -9,6 +9,7 @@ import WhyUs from "@/components/why-us"
 import HowItWorks from "@/components/how-it-works"
 import Partnerships from "@/components/partnerships"
 import CaseStudies from "@/components/case-studies"
+import HiringOpenings from "@/components/hiring-openings"
 import ContactSection from "@/components/contact-section"
 import FeaturesUpdate from "@/components/features-update"
 import Footer from "@/components/footer"
@@ -25,6 +26,7 @@ export default function Home() {
       <HowItWorks />
       <Partnerships />
       {/* <CaseStudies /> */}
+      <HiringOpenings />
       <ContactSection />
       <FeaturesUpdate />
       <Footer />

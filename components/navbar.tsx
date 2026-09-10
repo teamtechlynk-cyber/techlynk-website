@@ -64,6 +64,16 @@ export default function Navbar() {
               About
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
             </Link>
+            <Link
+              href="#careers"
+              className="text-muted-foreground hover:text-primary transition-all duration-300 font-medium relative group inline-flex items-center gap-2"
+            >
+              Careers
+              <span className="px-2 py-0.5 rounded-md bg-primary/15 border border-primary/30 text-[10px] font-bold uppercase tracking-wider text-primary">
+                Hiring
+              </span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+            </Link>
           </div>
 
           {/* CTA Button */}
@@ -109,6 +119,16 @@ export default function Navbar() {
               className="block py-3 px-4 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-lg transition-all duration-300"
             >
               About
+            </Link>
+            <Link
+              href="#careers"
+              onClick={() => setIsOpen(false)}
+              className="flex items-center gap-2 py-3 px-4 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-lg transition-all duration-300"
+            >
+              Careers
+              <span className="px-2 py-0.5 rounded-md bg-primary/15 border border-primary/30 text-[10px] font-bold uppercase tracking-wider text-primary">
+                Hiring
+              </span>
             </Link>
             <Link
               href="#contact"

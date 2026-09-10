@@ -1,4 +1,10 @@
 declare module "resend" {
+  export interface EmailAttachment {
+    filename: string
+    content: Buffer | string
+    contentType?: string
+  }
+
   export interface SendEmailOptions {
     from: string
     to: string | string[]
@@ -6,6 +12,7 @@ declare module "resend" {
     replyTo?: string
     html?: string
     text?: string
+    attachments?: EmailAttachment[]
   }
 
   export interface SendEmailResponse {

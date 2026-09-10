@@ -81,7 +81,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-primary transition-colors duration-300 text-base sm:text-lg font-medium">
+                <Link href="#careers" className="hover:text-primary transition-colors duration-300 text-base sm:text-lg font-medium">
                   Careers
                 </Link>
               </li>
