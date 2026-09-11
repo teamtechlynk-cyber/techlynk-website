@@ -183,7 +183,12 @@ export default function AdminJobsManager() {
           <Button onClick={startNew} size="sm">
             <Plus className="w-4 h-4" /> Add Role
           </Button>
-          <Button onClick={logout} variant="outline" size="sm">
+          <Button
+            onClick={logout}
+            variant="outline"
+            size="sm"
+            className="border-primary/30 hover:bg-primary/10 hover:text-primary"
+          >
             <LogOut className="w-4 h-4" /> Log Out
           </Button>
         </div>
@@ -277,7 +282,12 @@ export default function AdminJobsManager() {
               {saving && <Loader2 className="w-4 h-4 animate-spin" />}
               Save
             </Button>
-            <Button type="button" variant="outline" onClick={cancelEdit}>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={cancelEdit}
+              className="border-primary/30 hover:bg-primary/10 hover:text-primary"
+            >
               Cancel
             </Button>
           </div>
@@ -313,7 +323,13 @@ export default function AdminJobsManager() {
                 <span className="text-sm text-muted-foreground w-14">{job.active ? "Active" : "Closed"}</span>
               </div>
               <div className="flex items-center gap-2 shrink-0">
-                <Button variant="outline" size="icon-sm" onClick={() => startEdit(job)} aria-label="Edit">
+                <Button
+                  variant="outline"
+                  size="icon-sm"
+                  onClick={() => startEdit(job)}
+                  aria-label="Edit"
+                  className="border-primary/30 hover:bg-primary/10 hover:text-primary"
+                >
                   <Pencil className="w-4 h-4" />
                 </Button>
                 <Button
@@ -322,6 +338,7 @@ export default function AdminJobsManager() {
                   onClick={() => deleteJob(job)}
                   disabled={busyId === job.id}
                   aria-label="Delete"
+                  className="border-primary/30 hover:bg-destructive/10 hover:text-destructive hover:border-destructive/40"
                 >
                   <Trash2 className="w-4 h-4" />
                 </Button>
