@@ -39,7 +39,7 @@ export default function ServicesOverview() {
   const activeCategory = serviceCategories.find((cat) => cat.id === activeTab)
 
   return (
-    <section id="services-overview" className="py-20 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8 bg-white relative overflow-hidden">
+    <section id="services-overview" className="py-20 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8 bg-background relative overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-[0.02] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
 
@@ -53,7 +53,7 @@ export default function ServicesOverview() {
               className={`px-6 sm:px-8 py-3 sm:py-4 font-bold transition-all duration-500 text-sm sm:text-base whitespace-nowrap relative rounded-2xl ${
                 activeTab === category.id
                   ? "bg-primary text-primary-foreground shadow-lg shadow-primary/30 scale-105"
-                  : "text-slate-700 hover:text-slate-900 hover:bg-primary/10 hover:scale-105"
+                  : "text-muted-foreground hover:text-foreground hover:bg-primary/10 hover:scale-105"
               }`}
             >
               {category.name}
@@ -65,14 +65,14 @@ export default function ServicesOverview() {
         {activeCategory && (
           <div className="max-w-4xl mx-auto animate-slide-up">
             <div className="card-premium p-8 sm:p-10 md:p-12">
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-8 sm:mb-10">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-8 sm:mb-10">
                 {activeCategory.name}
               </h3>
               <ul className="space-y-4 sm:space-y-5">
                 {activeCategory.services.map((service, index) => (
                   <li
                     key={index}
-                    className="text-base sm:text-lg md:text-xl text-slate-700 hover:text-primary transition-colors duration-300 pl-4 border-l-4 border-primary/20 hover:border-primary/60"
+                    className="text-base sm:text-lg md:text-xl text-muted-foreground hover:text-primary transition-colors duration-300 pl-4 border-l-4 border-primary/20 hover:border-primary/60"
                   >
                     {service}
                   </li>

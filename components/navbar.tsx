@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Menu, X } from "lucide-react"
+import ThemeToggle from "@/components/theme-toggle"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -77,19 +78,23 @@ export default function Navbar() {
           </div>
 
           {/* CTA Button */}
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center gap-3">
+            <ThemeToggle />
             <Link href="#contact" className="relative inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold transition-all duration-300 bg-primary text-primary-foreground hover:shadow-lg hover:shadow-primary/40 hover:scale-105 active:scale-95 border border-primary/40">
               <span className="relative z-10">Contact Us</span>
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-foreground hover:bg-primary/10 rounded-lg transition-colors"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile: theme toggle + menu button */}
+          <div className="md:hidden flex items-center gap-1">
+            <ThemeToggle />
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 text-foreground hover:bg-primary/10 rounded-lg transition-colors"
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
