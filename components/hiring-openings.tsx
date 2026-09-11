@@ -1,64 +1,43 @@
 "use client"
 
-import { useState } from "react"
-import { ArrowRight, Bot, Cloud, Code2, Database, Server, MapPin, Briefcase, Clock, Flame } from "lucide-react"
-import type { LucideIcon } from "lucide-react"
+import { useEffect, useState } from "react"
+import { ArrowRight, MapPin, Briefcase, Clock, Flame } from "lucide-react"
 import ApplyModal from "@/components/apply-modal"
+import { JOB_ICONS, DEFAULT_JOB_ICON } from "@/lib/job-icons"
+import type { JobOpening } from "@/lib/jobs"
 
 const HIRING_EMAIL = "support@techlynk.co"
 
-type Opening = {
-  id: string
-  title: string
-  icon: LucideIcon
-  category: string
-  desc: string
-  /** Extra chips shown alongside the standard Remote / Contractor / 7+ Years tags. */
-  extraTags?: string[]
-}
-
-const openings: Opening[] = [
-  {
-    id: "agentic-ai",
-    title: "Agentic AI",
-    icon: Bot,
-    category: "AI & Automation",
-    desc: "Design and ship autonomous agent workflows, LLM integrations, and intelligent automation for enterprise systems.",
-  },
-  {
-    id: "java-full-stack",
-    title: "Java Full Stack Developer",
-    icon: Code2,
-    category: "Application Development",
-    desc: "Build end-to-end enterprise applications across Java, Spring Boot, and modern front-end frameworks.",
-  },
-  {
-    id: "mainframe",
-    title: "Mainframe Developer",
-    icon: Server,
-    category: "Legacy & Modernization",
-    desc: "Support, enhance, and modernize mission-critical mainframe applications and batch processing systems.",
-  },
-  {
-    id: "data-engineer",
-    title: "Data Engineer",
-    icon: Database,
-    category: "Data & Analytics",
-    desc: "Build and optimize data pipelines, warehousing, and analytics platforms. Open for both onshore and offshore engagements.",
-    extraTags: ["Onshore & Offshore"],
-  },
-  {
-    id: "azure-devops",
-    title: "Azure DevOps Engineer",
-    icon: Cloud,
-    category: "Cloud & DevOps",
-    desc: "Own CI/CD pipelines, infrastructure as code, and release automation across the Azure ecosystem.",
-  },
-]
-
 export default function HiringOpenings() {
+  const [openings, setOpenings] = useState<JobOpening[]>([])
+  const [loaded, setLoaded] = useState(false)
   const [applyRole, setApplyRole] = useState<string | null>(null)
+
+  // Fetched at runtime (not baked in at build time) so an admin toggling a
+  // role on/off shows up here on the next page load, no redeploy needed.
+  useEffect(() => {
+    let cancelled = false
+    fetch("/api/jobs")
+      .then((res) => res.json())
+      .then((data) => {
+        if (!cancelled) setOpenings(Array.isArray(data.jobs) ? data.jobs : [])
+      })
+      .catch(() => {
+        if (!cancelled) setOpenings([])
+      })
+      .finally(() => {
+        if (!cancelled) setLoaded(true)
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
   const roleTitles = openings.map((role) => role.title)
+
+  if (loaded && openings.length === 0) {
+    return null
+  }
 
   return (
     <section
@@ -108,7 +87,7 @@ export default function HiringOpenings() {
         {/* Openings grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
           {openings.map((role, index) => {
-            const Icon = role.icon
+            const Icon = JOB_ICONS[role.icon] ?? JOB_ICONS[DEFAULT_JOB_ICON]
             return (
               <div
                 key={role.id}

@@ -12,6 +12,14 @@ Copy `.env.example` to `.env.local` and set values. For production (e.g. Vercel)
 | `CONTACT_PHONE` | No | Shown by `/api/mail-info` |
 | `CONTACT_LOCATION` | No | Shown by `/api/mail-info` |
 | `NEXT_PUBLIC_SITE_URL` | No | Canonical URL for SEO (e.g. `https://your-domain.com`) |
+| `ADMIN_PASSWORD` | No (required for `/admin`) | Gates the `/admin` job-openings panel. Unset = `/admin` returns 503. |
+| `JOBS_DATA_FILE` | No | Path to the job-listings JSON file. **In production this must point outside the deployed code directory** (see below) — defaults to `./data/jobs.json`, which is only safe for local dev. |
+
+## Managing job openings without a deploy
+
+`/admin` lets you toggle roles on/off, edit them, or add new ones — the public site reads the same data file on every request (`app/api/jobs/route.ts` is `force-dynamic`), so changes show up immediately with no rebuild.
+
+The data lives in a plain JSON file (`lib/jobs.ts`), auto-created with the current 5 roles on first read. **Set `JOBS_DATA_FILE` to a path outside the deployed app directory** (e.g. `/opt/techlynk-data/jobs.json` if the app itself lives in `/opt/techlynk`) — this deploy process replaces the whole app directory on every release, so a data file left inside it would be silently wiped on the next deploy. Set both `ADMIN_PASSWORD` and `JOBS_DATA_FILE` in `/etc/techlynk.env` (or your container's env), not in the repo.
 
 ## Build and run
 
