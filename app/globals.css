@@ -262,29 +262,33 @@
     animation: scale-in 0.5s ease-out;
   }
 
-  /* Glassmorphism Effects - Light theme (logo blue tint) */
+  /* Glassmorphism Effects — derived from the --card token so they follow
+     the active theme (previously hardcoded to white/off-white, which made
+     text unreadable once dark mode was real instead of light-only). */
   .glass {
-    background: rgba(255, 255, 255, 0.7);
+    background: color-mix(in oklab, var(--card) 70%, transparent);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(37, 99, 235, 0.25);
-    box-shadow: 0 8px 32px rgba(37, 99, 235, 0.08);
+    border: 1px solid color-mix(in oklab, var(--primary) 25%, transparent);
+    box-shadow: 0 8px 32px color-mix(in oklab, var(--primary) 8%, transparent);
   }
 
   .glass-primary {
-    background: rgba(255, 255, 255, 0.85);
+    background: color-mix(in oklab, var(--card) 85%, transparent);
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
-    border: 1px solid rgba(37, 99, 235, 0.35);
-    box-shadow: 0 8px 32px rgba(37, 99, 235, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    border: 1px solid color-mix(in oklab, var(--primary) 35%, transparent);
+    box-shadow:
+      0 8px 32px color-mix(in oklab, var(--primary) 12%, transparent),
+      inset 0 1px 0 color-mix(in oklab, var(--foreground) 10%, transparent);
   }
 
   .glass-dark {
-    background: rgba(248, 250, 252, 0.9);
+    background: color-mix(in oklab, var(--card) 90%, transparent);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(37, 99, 235, 0.2);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+    border: 1px solid color-mix(in oklab, var(--primary) 20%, transparent);
+    box-shadow: 0 8px 32px color-mix(in oklab, var(--foreground) 6%, transparent);
   }
 
   /* Modern Card Styles */

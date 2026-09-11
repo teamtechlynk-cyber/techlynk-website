@@ -105,13 +105,13 @@ export default function ContactSection() {
           <div className="glass-primary border border-border rounded-3xl p-8 sm:p-10 md:p-12 animate-slide-up shadow-2xl shadow-primary/5">
             <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
               {status === "success" && (
-                <div className="flex items-center gap-3 p-4 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-700">
+                <div className="flex items-center gap-3 p-4 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300">
                   <CheckCircle size={24} className="flex-shrink-0" />
                   <p className="font-medium">Message sent successfully! We'll get back to you soon.</p>
                 </div>
               )}
               {status === "error" && (
-                <div className="flex items-center gap-3 p-4 rounded-2xl bg-red-500/15 border border-red-500/30 text-red-700">
+                <div className="flex items-center gap-3 p-4 rounded-2xl bg-red-500/15 border border-red-500/30 text-red-700 dark:text-red-300">
                   <p className="font-medium">{errorMsg}</p>
                 </div>
               )}

@@ -112,7 +112,7 @@ export default function JourneyFormModal({ isOpen, onClose, onSubmit }: JourneyF
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5">
               {status === "error" && (
-                <div className="p-4 rounded-xl bg-red-500/15 border border-red-500/30 text-red-700 text-sm">
+                <div className="p-4 rounded-xl bg-red-500/15 border border-red-500/30 text-red-700 dark:text-red-300 text-sm">
                   {errorMsg}
                 </div>
               )}
